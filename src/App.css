@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body{
+  color: #ffffff;
+  background: #2B2E43;
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: calc(100vh - 20px);
+  padding: 10px;
+}

@@ -8,28 +8,6 @@ const Profile = () => {
   const [error, setError] = React.useState(null);
   const [bio, setBio] = React.useState(null);
 
-  // React.useEffect(() => {
-  //   async function getUser(temppone) {
-  //     const userData = await fetch(`https://api.github.com/users/temppone`);
-  //     userData.json().then((response) => {
-  //       setProfile(response);
-  //     });
-  //     const reposData = await fetch(
-  //       `https://api.github.com/users/temppone/repos`
-  //     );
-  //     reposData.json().then((response) => {
-  //       try {
-  //         setLoading(true);
-  //       } catch (erro) {
-  //         setError(erro);
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     });
-  //   }
-  //   getUser();
-  // }, []);
-
   React.useEffect((searchInputUser) => {
     const token = process.env.REACT_APP_HOST_API_KEY;
 
@@ -38,14 +16,14 @@ const Profile = () => {
         setLoading(true);
         const userData = await fetch(urlProfile, {
           headers: {
-            authorization: `token ${token}`,
+            Authorization: `token ${token}`,
           },
         });
         userData.json().then((response) => setProfile(response));
 
         const reposData = await fetch(urlRepos, {
           headers: {
-            authorization: `token ${token}`,
+            Authorization: `token ${token}`,
           },
         });
         reposData.json().then((response) => {
@@ -71,9 +49,10 @@ const Profile = () => {
     );
   }, []);
 
-  React.useEffect(() => {
-    console.log(profile);
-  }, [profile]);
+  if (loading) return <div className={styles.loading}>Carregando...</div>;
+  if (error) return <div>{error}</div>;
+  if (!profile) return null;
+  if (!repos) return null;
 
   return (
     <div className={`container ${styles.profile}`}>
@@ -92,22 +71,12 @@ const Profile = () => {
         <div> {profile.organization}</div>
       </div>
       <div className={styles.repositories}>
-        <div className={styles.repository}>
-          <h2>react-json</h2>
-          <p>Lorem ipsum dolor amet dedo dada papapap</p>
-        </div>
-        <div className={styles.repository}>
-          <h2>react-json</h2>
-          <p>Lorem ipsum dolor amet dedo dada papapap</p>
-        </div>
-        <div className={styles.repository}>
-          <h2>react-json</h2>
-          <p>Lorem ipsum dolor amet dedo dada papapap</p>
-        </div>
-        <div className={styles.repository}>
-          <h2>react-json</h2>
-          <p>Lorem ipsum dolor amet dedo dada papapap</p>
-        </div>
+        {repos.map((repo) => (
+          <div key={repos.name} className={styles.repository}>
+            <h2>{repo.name}</h2>
+            <p>{repo.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

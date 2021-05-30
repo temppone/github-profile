@@ -8,6 +8,7 @@ import {
   SupervisorAccount,
   Twitter,
 } from "@material-ui/icons";
+import LangColor from "./LangColor";
 
 const Profile = () => {
   const [profile, setProfile] = React.useState("");
@@ -38,7 +39,6 @@ const Profile = () => {
         reposData
           .json()
           .then((response) => {
-            console.log("sucesso", response);
             setReposResponse(response);
           })
           .catch((response) => console.log("erro", response))
@@ -84,43 +84,46 @@ const Profile = () => {
         </div>
 
         <div className={styles.moreInfos}>
-            {profile.organization ? (
-              <div>
-                <HomeWork />
-                {profile.organization}
-              </div>
-            ) : null}
+          {profile.organization ? (
+            <div>
+              <HomeWork />
+              {profile.organization}
+            </div>
+          ) : null}
 
-            {profile.location ? (
-              <div>
-                <Home />
-                {profile.location}
-              </div>
-            ) : null}
+          {profile.location ? (
+            <div>
+              <Home />
+              {profile.location}
+            </div>
+          ) : null}
 
-            {profile.email ? (
-              <div>
-                <Email />
-                <a href={profile.email}>{profile.email}</a>
-              </div>
-            ) : null}
-            {profile.twitter ? (
-              <div>
-                <Twitter />
-                <a href={profile.twitter}>{profile.twitter}</a>
-              </div>
-            ) : null}
-            {profile.blog ? (
-              <div>
-                <Link />
-                <a href={profile.blog}>{profile.blog}</a>
-              </div>
-            ) : null}
+          {profile.email ? (
+            <div>
+              <Email />
+              <a href={profile.email}>{profile.email}</a>
+            </div>
+          ) : null}
+          {profile.twitter ? (
+            <div>
+              <Twitter />
+              <a href={profile.twitter}>{profile.twitter}</a>
+            </div>
+          ) : null}
+          {profile.blog ? (
+            <div>
+              <Link />
+              <a href={profile.blog}>{profile.blog}</a>
+            </div>
+          ) : null}
         </div>
       </div>
       <div className={styles.repositories}>
         {reposResponse?.map((repo) => (
           <div key={repo.name} className={styles.repository}>
+            <div>
+              <LangColor colorLangRepo={repo.language} />
+            </div>
             <h2>{repo.name}</h2>
             <p>{repo.description}</p>
           </div>

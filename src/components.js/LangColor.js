@@ -1,17 +1,22 @@
-import React from 'react'
-import langColors from "./langColors.json"
+import React from "react";
 
+const LangColor = ({ colorLangRepo }) => {
+  const [color, setColor] = React.useState(null);
 
+  async function getColors(url) {
+    const colorData = await fetch(url);
+    colorData
+      .json()
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((response) => console.log("Deu ruim", response))
+      .finally("acabou");
+  }
 
-const LangColor = () => {
+  getColors("https://api.jsonbin.io/b/60b3911f44f488301b814033");
 
-  console.log(langColors)
+  return <div></div>;
+};
 
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default LangColor
+export default LangColor;

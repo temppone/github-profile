@@ -8,7 +8,6 @@ import {
   SupervisorAccount,
   Twitter,
 } from "@material-ui/icons";
-import LangColor from "./LangColor";
 
 const Profile = () => {
   const [profile, setProfile] = React.useState("");
@@ -120,13 +119,16 @@ const Profile = () => {
       </div>
       <div className={styles.repositories}>
         {reposResponse?.map((repo) => (
-          <div key={repo.name} className={styles.repository}>
-            <div>
-              <LangColor colorLangRepo={repo.language} />
+          <a href={repo.html_url} alt={repo.description} target="_blank">
+            <div key={repo.name} className={styles.repository}>
+              <h2>{repo.name}</h2>
+              {repo.description ? (
+                <p>{repo.description}</p>
+              ) : (
+                <p>No description, read more here</p>
+              )}
             </div>
-            <h2>{repo.name}</h2>
-            <p>{repo.description}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>

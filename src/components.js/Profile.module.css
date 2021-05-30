@@ -16,16 +16,16 @@
 }
 
 .avatarAndInfos {
-  background: #2f3247;
   display: flex;
   flex-flow: column;
   align-items: center;
   padding: 10px;
+  background: #2f3247;
 }
 
 .avatarAndInfosImage > img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 
@@ -66,28 +66,65 @@
   margin-top: 15px;
 }
 
-.moreInfos svg{
+.moreInfos svg {
   margin-right: 10px;
 }
 
-.moreInfos a {
-  color: #fff;
-}
-
-.moreInfos a:visited {
-  color: #fff;
+.title {
+  display: flex;
 }
 
 .repositories {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
   padding: 100px;
-  grid-auto-rows: 150px;
   gap: 20px;
 }
 
+.repository > a {
+  padding: 0;
+  margin: 0;
+}
 .repository {
   background: #2f3247;
   border-radius: 10px;
-  padding: 10px;
+  padding: 20px;
+}
+
+.repository:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.repository h2:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00cd69;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+  }
+  .avatarAndInfos {
+    display: flex;
+    align-content: center;
+    width: 100%;
+    height: 700px;
+  }
+  .repositories {
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 10px;
+  }
+  .repository {
+    margin: 0 auto;
+
+    width: 80%;
+  }
 }

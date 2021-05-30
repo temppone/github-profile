@@ -1,8 +1,22 @@
-.profile{
+.profile {
   background: transparent;
 }
+
+.avatarAndInfos > div {
+  margin: 5px 0 5px 0;
+  width: 220px;
+}
+
+.userName {
+  margin: 0;
+  padding: 20px 0 10px 0;
+}
+.login {
+  font-weight: 600;
+}
+
 .avatarAndInfos {
-  background: #2F3247;
+  background: #2f3247;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -15,6 +29,55 @@
   border-radius: 50%;
 }
 
+.socialNumbers {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.socialNumbers > div {
+  margin-right: 10px;
+  margin-left: 3px;
+  display: inline-block;
+}
+
+.socialNumbers div > div {
+  font-weight: 600;
+  display: inline-block;
+}
+
+.moreInfos:before {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 4px;
+  border-radius: 15%;
+  background: #00cd69;
+  margin: 40px auto 40px auto;
+}
+
+.moreInfos {
+  flex-flow: column;
+}
+
+.moreInfos > div {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.moreInfos svg{
+  margin-right: 10px;
+}
+
+.moreInfos a {
+  color: #fff;
+}
+
+.moreInfos a:visited {
+  color: #fff;
+}
+
 .repositories {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -24,6 +87,7 @@
 }
 
 .repository {
-  background: #2F3247;
+  background: #2f3247;
   border-radius: 10px;
+  padding: 10px;
 }

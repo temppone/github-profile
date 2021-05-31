@@ -8,6 +8,7 @@ import {
   SupervisorAccount,
   Twitter,
 } from "@material-ui/icons";
+import colors from "./Colors";
 
 const Profile = () => {
   const [profile, setProfile] = React.useState("");
@@ -50,8 +51,8 @@ const Profile = () => {
     }
 
     getProfileRepos(
-      `https://api.github.com/users/txgruppi`,
-      `https://api.github.com/users/txgruppi/repos`
+      `https://api.github.com/users/temppone`,
+      `https://api.github.com/users/temppone/repos`
     );
   }, []);
 
@@ -118,8 +119,17 @@ const Profile = () => {
         </div>
       </div>
       <div className={styles.repositories}>
+        <div className={styles.repoTitle}>
+          <h1>Repositories</h1>
+        </div>
         {reposResponse?.map((repo) => (
-          <a href={repo.html_url} alt={repo.description} target="_blank">
+          <a
+            key={repo.name}
+            href={repo.html_url}
+            alt={repo.description}
+            target="_blank"
+            rel="noreferrer"
+          >
             <div key={repo.name} className={styles.repository}>
               <h2>{repo.name}</h2>
               {repo.description ? (
@@ -127,6 +137,10 @@ const Profile = () => {
               ) : (
                 <p>No description, read more here</p>
               )}
+              <div className={styles.repoLang}>
+                <div style={colors[repo.language]}></div>
+                {repo.language}
+              </div>
             </div>
           </a>
         ))}

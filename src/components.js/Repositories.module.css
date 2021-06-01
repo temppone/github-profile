@@ -1,5 +1,3 @@
-
-
 .title {
   display: flex;
 }
@@ -44,7 +42,6 @@
   display: inline-block;
   margin-right: 10px;
 }
-  
 
 @media screen and (max-width: 768px) {
   .repositories {
@@ -56,5 +53,4 @@
     margin: 0 auto;
     width: 80%;
   }
-  
 }

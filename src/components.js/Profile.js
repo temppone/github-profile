@@ -8,17 +8,14 @@ import {
   SupervisorAccount,
   Twitter,
 } from "@material-ui/icons";
-import Repositories from "./Repositories";
 
-const Profile = ({ searchInputUser }) => {
+const Profile = ({ searchInputUserProfile }) => {
   const [profile, setProfile] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
-  React.useEffect((searchInputUser) => {
+  React.useEffect(() => {
     const token = process.env.REACT_APP_HOST_API_KEY;
-    console.log(token);
-
     async function getProfileRepos(urlProfile) {
       try {
         setLoading(true);
@@ -34,11 +31,10 @@ const Profile = ({ searchInputUser }) => {
         setLoading(false);
       }
     }
-    searchInputUser="temppone"
-    getProfileRepos(`https://api.github.com/users/temppone`);
+    getProfileRepos(`https://api.github.com/users/${searchInputUserProfile}`);
   }, []);
 
-  if (loading) return <div className={styles.loading}>Carregando...</div>;
+  if (loading) return <div className="container growUpBar"></div>;
   if (error) return <div>{error}</div>;
   if (!profile) return null;
 
@@ -100,7 +96,6 @@ const Profile = ({ searchInputUser }) => {
           ) : null}
         </div>
       </div>
-      <Repositories searchInputUser={searchInputUser} />
     </div>
   );
 };

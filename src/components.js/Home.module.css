@@ -1,3 +1,24 @@
-input{
-  padding: 10px;
+.formSearch {
+  grid-column: span 2;
+  font-size: 2rem;
+  height: 100vh;
+}
+
+.inputSearch {
+  padding: 20px;
+  font-size: 1.6rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid #ffffff;
+  outline: none;
+  width: 300px;
+}
+
+.buttonSearch{
+  padding: 20px;
+  box-shadow: none;
+  border: none;
+  border-radius: 6px;
+  background: #00cd69;
+  color: #ffffff;
 }

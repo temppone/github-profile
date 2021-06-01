@@ -1,14 +1,13 @@
 import React from "react";
 import styles from "./Repositories.module.css";
-
 import colors from "./Colors";
 
-const Repositories = ({ searchInputUser }) => {
+const Repositories = ({ searchInputUserRepo }) => {
   const [reposResponse, setReposResponse] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState(null);
 
-  React.useEffect((searchInputUser) => {
+  React.useEffect(() => {
     async function getProfileRepos(urlRepos) {
       const token = process.env.REACT_APP_HOST_API_KEY;
 
@@ -27,15 +26,14 @@ const Repositories = ({ searchInputUser }) => {
         .catch((error) => setErrorMessage(error))
         .finally((response) => setLoading(false));
     }
-    searchInputUser = "temppone";
-    getProfileRepos(`https://api.github.com/users/${searchInputUser}/repos`);
+    getProfileRepos(
+      `https://api.github.com/users/${searchInputUserRepo}/repos`
+    );
   }, []);
 
-  if (loading) return <div className={styles.growUpBar}></div>;
+  if (loading) return <div className="growUpBar"></div>;
   if (errorMessage)
     return <div className={styles.errorMessage}>`${errorMessage} :(`</div>;
-  if (!reposResponse)
-    return <div className={styles.errorMessage}>Não tem nada aqui uai</div>;
 
   return (
     <div className={styles.repositories}>
@@ -58,8 +56,12 @@ const Repositories = ({ searchInputUser }) => {
               <p>No description, read more here</p>
             )}
             <div className={styles.repoLang}>
-              <div style={colors[repo.language]}></div>
-              {repo.language}
+              <div
+                style={{
+                  background: colors[repo.language]?.background ?? "#f4793b",
+                }}
+              ></div>
+              {repo.language ?? "Linguagem não encontrada"}
             </div>
           </div>
         </a>

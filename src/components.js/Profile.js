@@ -8,19 +8,18 @@ import {
   SupervisorAccount,
   Twitter,
 } from "@material-ui/icons";
-import colors from "./Colors";
+import Repositories from "./Repositories";
 
-const Profile = () => {
+const Profile = ({ searchInputUser }) => {
   const [profile, setProfile] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
-  const [reposResponse, setReposResponse] = React.useState(null);
 
   React.useEffect((searchInputUser) => {
     const token = process.env.REACT_APP_HOST_API_KEY;
     console.log(token);
 
-    async function getProfileRepos(urlProfile, urlRepos) {
+    async function getProfileRepos(urlProfile) {
       try {
         setLoading(true);
         const userData = await fetch(urlProfile, {
@@ -29,31 +28,14 @@ const Profile = () => {
           },
         });
         userData.json().then((response) => setProfile(response));
-
-        const reposData = await fetch(urlRepos, {
-          headers: {
-            Authorization: `token ${token}`,
-          },
-        });
-
-        reposData
-          .json()
-          .then((response) => {
-            setReposResponse(response);
-          })
-          .catch((response) => console.log("erro", response))
-          .finally((response) => setLoading(false));
       } catch (erro) {
         setError(erro);
       } finally {
         setLoading(false);
       }
     }
-
-    getProfileRepos(
-      `https://api.github.com/users/temppone`,
-      `https://api.github.com/users/temppone/repos`
-    );
+    searchInputUser="temppone"
+    getProfileRepos(`https://api.github.com/users/temppone`);
   }, []);
 
   if (loading) return <div className={styles.loading}>Carregando...</div>;
@@ -118,33 +100,7 @@ const Profile = () => {
           ) : null}
         </div>
       </div>
-      <div className={styles.repositories}>
-        <div className={styles.repoTitle}>
-          <h1>Repositories</h1>
-        </div>
-        {reposResponse?.map((repo) => (
-          <a
-            key={repo.name}
-            href={repo.html_url}
-            alt={repo.description}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div key={repo.name} className={styles.repository}>
-              <h2>{repo.name}</h2>
-              {repo.description ? (
-                <p>{repo.description}</p>
-              ) : (
-                <p>No description, read more here</p>
-              )}
-              <div className={styles.repoLang}>
-                <div style={colors[repo.language]}></div>
-                {repo.language}
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
+      <Repositories searchInputUser={searchInputUser} />
     </div>
   );
 };

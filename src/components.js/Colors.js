@@ -1820,4 +1820,5 @@ const colors = {
     url: "https://github.com/trending?l=Zimpl",
   },
 };
+
 export default colors;

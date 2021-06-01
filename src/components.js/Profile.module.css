@@ -73,50 +73,7 @@
   margin-right: 10px;
 }
 
-.title {
-  display: flex;
-}
 
-.repositories {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto;
-  padding: 100px;
-  gap: 20px;
-}
-.repoTitle {
-  grid-column: span 2;
-}
-.repoTitle > h1 {
-  margin: 0;
-}
-
-.repository > a {
-  padding: 0;
-  margin: 0;
-}
-.repository {
-  background: #2f3247;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.repository:hover {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.defaultLangColor {
-  background: #00cd69;
-}
-
-.repoLang > div {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 10px;
-}
 
 @media screen and (max-width: 768px) {
   .profile {
@@ -128,14 +85,5 @@
     align-content: center;
     width: 100%;
     height: 700px;
-  }
-  .repositories {
-    grid-template-columns: 1fr;
-    width: 100%;
-    padding: 10px;
-  }
-  .repository {
-    margin: 0 auto;
-    width: 80%;
   }
 }

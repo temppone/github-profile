@@ -28,13 +28,29 @@ a:active {
   color: #ffffff;
 }
 
-
 @media screen and (max-width: 768px) {
-  .container{
+  .container {
     grid-template-columns: auto;
     width: 100%;
     margin: 0;
     padding: 0;
   }
-  
+}
+
+.growUpBar {
+  animation: growUp 3s infinite;
+  background: #00cd69;
+  content: "";
+  width: 10rem;
+  height: 3px;
+  margin-top: 20px;
+}
+
+@keyframes growUp {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }

@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import Head from "./Head";
 import Profile from "./Profile";
 import Repositories from "./Repositories";
+import styles from "./ProfileResult.module.css"
 
 const ProfileResult = () => {
   const { user } = useParams();
@@ -12,7 +13,7 @@ const ProfileResult = () => {
   }
 
   return (
-    <div className="container">
+    <div className={styles.profileResultContainer}>
       <Head
         title={"Resultado"}
         description={"Resultado da pesquisa com o perfil do usuário"}

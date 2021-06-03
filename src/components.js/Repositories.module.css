@@ -9,9 +9,11 @@
   padding: 100px;
   gap: 20px;
 }
+
 .repoTitle {
   grid-column: span 2;
 }
+
 .repoTitle > h1 {
   margin: 0;
 }

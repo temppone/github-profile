@@ -31,12 +31,17 @@ const Repositories = ({ searchInputUserRepo }) => {
     );
   }, []);
 
-  if (loading) return <div className="growUpBar"></div>;
+  if (loading)
+    return (
+    <div className="growUpBarContainer">
+      <div className="growUpBar"></div>
+    </div>
+    );
   if (errorMessage)
     return <div className={styles.errorMessage}>`${errorMessage} :(`</div>;
 
   return (
-    <div className={styles.repositories}>
+    <div className={`${styles.repositories} showUp`}>
       <div className={styles.repoTitle}>
         <h1>Repositories</h1>
       </div>

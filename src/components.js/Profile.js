@@ -32,69 +32,78 @@ const Profile = ({ searchInputUserProfile }) => {
       }
     }
     getProfileRepos(`https://api.github.com/users/${searchInputUserProfile}`);
-  }, []);
+  }, [searchInputUserProfile]);
 
-  if (loading) return <div className="container growUpBar"></div>;
+  if (loading)
+    return (
+      <div className="growUpContainer">
+        <div className="growUpBar"></div>
+      </div>
+    );
   if (error) return <div>{error}</div>;
   if (!profile) return null;
 
   return (
-    <div className={`container ${styles.profile}`}>
-      <div className={styles.avatarAndInfos}>
-        <div className={styles.avatarAndInfosImage}>
-          <img src={profile.avatar_url} alt="" />
+    <div className={`${styles.avatarAndInfos} showUp`}>
+      <div className={styles.avatarAndInfosImage}>
+        <img src={profile.avatar_url} alt="" />
+      </div>
+
+      <h1 className={styles.userName}>{profile.name}</h1>
+
+      <div className={styles.login}>@{profile.login}</div>
+
+      <div>{profile.bio}</div>
+
+      <div className={styles.socialNumbers}>
+        <SupervisorAccount />
+        <div>
+          <div>{profile.followers}</div> followers
         </div>
+        <div>
+          <div>{profile.following}</div> following
+        </div>
+      </div>
 
-        <h1 className={styles.userName}>{profile.name}</h1>
-
-        <div className={styles.login}>@{profile.login}</div>
-
-        <div>{profile.bio}</div>
-
-        <div className={styles.socialNumbers}>
-          <SupervisorAccount />
+      <div className={styles.moreInfos}>
+        {profile.organization ? (
           <div>
-            <div>{profile.followers}</div> followers
+            <HomeWork />
+            {profile.organization}
           </div>
+        ) : null}
+
+        {profile.location ? (
           <div>
-            <div>{profile.following}</div> following
+            <Home />
+            {profile.location}
           </div>
-        </div>
+        ) : null}
 
-        <div className={styles.moreInfos}>
-          {profile.organization ? (
-            <div>
-              <HomeWork />
-              {profile.organization}
-            </div>
-          ) : null}
-
-          {profile.location ? (
-            <div>
-              <Home />
-              {profile.location}
-            </div>
-          ) : null}
-
-          {profile.email ? (
-            <div>
-              <Email />
-              <a href={profile.email}>{profile.email}</a>
-            </div>
-          ) : null}
-          {profile.twitter ? (
-            <div>
-              <Twitter />
-              <a href={profile.twitter}>{profile.twitter}</a>
-            </div>
-          ) : null}
-          {profile.blog ? (
-            <div>
-              <Link />
-              <a href={profile.blog}>{profile.blog}</a>
-            </div>
-          ) : null}
-        </div>
+        {profile.email ? (
+          <div>
+            <Email />
+            <a href={profile.email} target="blank">
+              {profile.email}
+            </a>
+          </div>
+        ) : null}
+        {profile.twitter ? (
+          <div>
+            <Twitter />
+            <a href={profile.twitter} target="blank">
+              {profile.twitter}
+            </a>
+          </div>
+        ) : null}
+        {profile.blog ? (
+          <div>
+            <Link />
+            <a href={profile.blog} target="blank">
+              {profile.blog}
+            </a>
+          </div>
+        ) : null}
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ const Home = () => {
         </form>
       </div>
       <div className={styles.introImage}>
-        <img src={introImage} alt="Imagem com um perfil pessoal" />
+        <img src={introImage} alt="Imagem  um perfil pessoal" />
       </div>
     </div>
   );

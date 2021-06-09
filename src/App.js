@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "./components.js/Home";
-import Profile from "./components.js/Profile";
-import ProfileResult from "./components.js/ProfileResult";
-import NotFound from "./components.js/NotFound";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import ProfileResult from "./components/ProfileResult";
+import NotFound from "./components/NotFound";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
